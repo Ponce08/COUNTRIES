@@ -1,9 +1,7 @@
 const { Router } = require("express");
-const getRout = require("./getRoutes");
-const postRout = require("./postRoutes");
+const allRoutes = require("./allRoutes");
 const router = Router();
 
-router.use('/countries', getRout);
-router.use('/countries', postRout);
+router.use('/countries', allRoutes);
 
 module.exports = router;

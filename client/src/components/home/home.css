@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+    background-color: #B6F0F9 ;
+}
+
+.content_countries{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

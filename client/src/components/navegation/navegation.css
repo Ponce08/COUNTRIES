@@ -1,0 +1,8 @@
+.content_nav{
+    height: 100px;
+    background-image:url('./fondo_nav.jpg');
+    background-size:cover;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}

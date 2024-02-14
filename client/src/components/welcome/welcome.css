@@ -1,0 +1,52 @@
+.content_welcome{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.content_fondo img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 50%;
+}
+
+.content_titulo_button{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.titulo_welcome{
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: calc(9vw + 1em);
+    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    
+}
+
+.button_welcome{
+    font-size: calc(2vw + .5em);
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    transition-duration: 0.8s;
+}
+
+.button_welcome:hover{
+    transition-duration: 0.8s;
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 15px aquamarine, 0 0 15px aquamarine, 0 0 15px aquamarine;
+}
+

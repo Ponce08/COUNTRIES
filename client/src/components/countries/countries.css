@@ -1,0 +1,23 @@
+.content_country{
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    height:auto ;
+    margin: 50px 30px 10px 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    cursor: pointer;
+    transition-duration: 0.8s;
+}
+
+.content_country:hover{
+    transition-duration: 0.3s;
+    transform: scale(1.05);
+    border-width: 2.5px;
+}
+
+.image_country{
+    max-width: 150px;
+    max-height: 100px;
+}

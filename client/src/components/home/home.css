@@ -1,10 +1,40 @@
 body{
     margin: 0;
-    background-color: #B6F0F9 ;
+    background-color: #B6F0F9;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .content_countries{
+    padding-top: 100px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.cont_button{
+    margin: 10px 0 10px 0;
+}
+
+.button_home{
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: aquamarine;
+    background: rgb(29,27,29);
+    background: linear-gradient(323deg, rgba(29,27,29,1) 0%, rgba(20,126,136,1) 100%);
+    transition-duration: 0.8s;
+}
+
+.button_home:hover{
+    transition-duration: 0.4s;
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 15px aquamarine, 0 0 15px aquamarine, 0 0 15px aquamarine;
+    text-shadow: 3px 3px black;
 }

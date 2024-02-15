@@ -1,6 +1,7 @@
 import './welcome.css';
 import fondo_welcome from './banderas-del-mundo-tapa.jpg'
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
 import axios from 'axios';
 
 const Welcome = ()=>{
@@ -12,13 +13,17 @@ const Welcome = ()=>{
             throw Error(error.message)
         }
     };
+    
+    useEffect(()=>{
+        addCountriesBDD()
+    }, []);
 
     return(
         <div className='content_welcome'>
             <div className='content_titulo_button'>
                 <h1 className='titulo_welcome'>Bienvenidos</h1>
                 <Link to={'/home'}>
-                    <button className='button_welcome' onClick={addCountriesBDD}>Empezar</button>
+                    <button className='button_welcome'>Empezar</button>
                 </Link>
             </div>
             <div className='content_fondo'>

@@ -1,7 +1,8 @@
 .content_country{
     display: flex;
+    align-items: center;
     flex-direction: column;
-    max-width: 150px;
+    width: 200px;
     height:auto ;
     margin: 50px 30px 10px 30px;
     border-style: solid;
@@ -17,7 +18,30 @@
     border-width: 2.5px;
 }
 
+.content_image{
+    width: 150px;
+    height: 120px;
+}
 .image_country{
     max-width: 150px;
     max-height: 100px;
+}
+
+.titulo_country{
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    text-align: center;
+}
+
+.titulo_continente{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    font-weight: bold;
+    color: blue;
+}
+
+.titulo_continente h5{
+    margin: 0;
+    color: black;
+    text-align: center;
 }

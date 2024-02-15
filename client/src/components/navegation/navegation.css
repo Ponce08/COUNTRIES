@@ -1,8 +1,85 @@
 .content_nav{
     height: 100px;
+    width: 100%;
     background-image:url('./fondo_nav.jpg');
     background-size:cover;
     display: flex;
     justify-content: space-around;
-    align-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 2;
+}
+
+.content_buscar{
+    margin-top: 30px;
+    height: 50px;
+    button{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        font-weight: bold;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        transition-duration: 0.8s;
+    }
+    input{
+        height: 14px;
+        padding-bottom: 2px;
+    }
+}
+
+.content_buscar button:hover{
+    transition-duration: 0.8s;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.content_crear_actividad{
+    margin-top: 23px;
+    height: 50px;
+    button{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        font-weight: bold;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        transition-duration: 0.8s;
+    }
+}
+
+.content_crear_actividad button:hover{
+    transition-duration: 0.8s;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.content_ordenar{
+    margin-top: 30px;
+    height: 50px;
+    label{
+        margin-right: 5px;
+        background-color: white;
+        font-weight: bold;
+        padding: 0 3px 0 3px;
+        border-radius: 2px;
+    }
+    select{
+        font-family: 'Courier New', Courier, monospace;
+    }    
+}
+
+.content_filtrar{
+    margin-top: 30px;
+    height: 50px;
+    label{
+        margin-right: 5px;
+        background-color: white;
+        font-weight: bold;
+        padding: 0 3px 0 3px;
+        border-radius: 2px;
+    }
+    select{
+        font-family: 'Courier New', Courier, monospace;
+    }
 }

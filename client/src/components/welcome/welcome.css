@@ -36,6 +36,7 @@
 }
 
 .button_welcome{
+    font-family: 'Courier New', Courier, monospace;
     font-size: calc(2vw + .5em);
     border-style: solid;
     border-color: black;

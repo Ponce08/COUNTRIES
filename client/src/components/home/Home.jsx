@@ -2,7 +2,7 @@ import './home.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
-import { allCountries } from '../../ridux/actions';
+import { allCountries, filter, getCountryByName, order } from '../../ridux/actions';
 import Countries from '../countries/Countries';
 import Navegation from '../navegation/Navegation';
 
@@ -11,13 +11,13 @@ const Home = ()=>{
     const { countries } = useSelector((state)=>state);
     const dispatch = useDispatch();
 
-// Control paginado
     const [inicio, setInicio] = useState(0);
     const [final, setFinal] = useState(10);
     const [numeberPage, setNumberPage] = useState(1);
     const [numeberPage2, setNumberPage2] = useState(2);
+    const [nameCountry, setNameCountry] = useState('');
 
-
+            // Control paginado
 let countriesAll = countries.slice(inicio, final)
     const previous_page = ()=>{
             if(inicio > 0){
@@ -39,6 +39,24 @@ let countriesAll = countries.slice(inicio, final)
             }
         };
 
+            // Orden y filtrados
+        const handleChange = (event)=>{
+            setNameCountry(event.target.value)
+        }
+
+        const handleInput = ()=>{
+            dispatch(getCountryByName(nameCountry))
+            setNameCountry('')
+        }
+
+        const handleOrder = (event)=>{
+            dispatch(order(event.target.value))
+          };
+
+        const handleFilter = (event)=>{
+            dispatch(filter(event.target.value))
+          };
+
     useEffect(()=>{
         dispatch(allCountries())
     }, []);
@@ -47,8 +65,8 @@ let countriesAll = countries.slice(inicio, final)
         <div>
             <Navegation
                 find_By_name={<div className='content_buscar'>
-                                <button>Buscar</button>
-                                <input type="text" />
+                                <button onClick={handleInput}>Buscar</button>
+                                <input type="text" value={nameCountry} onChange={handleChange}/>
                               </div>}
 
                 crear_actividad={ <div className='content_crear_actividad'>
@@ -59,7 +77,7 @@ let countriesAll = countries.slice(inicio, final)
 
                 ordenar={    <div className='content_ordenar'>
                                 <label>Ordenar</label>
-                                    <select>
+                                    <select onChange={handleOrder}>
                                         <option value="Todos">Todos</option>
                                         <option value="Mayor Poblacion">Mayor Poblacion</option>
                                         <option value="Menor Poblacion">Menor Poblacion</option>
@@ -68,11 +86,10 @@ let countriesAll = countries.slice(inicio, final)
                             </div>}
                 filtrar={    <div className='content_filtrar'>
                                 <label>Filtrar Por Continente</label>
-                                    <select>
-                                        <option value=""></option>
+                                    <select onChange={handleFilter}>
+                                        <option value="Todos">Todos</option>
                                         <option value="America del Norte">America del Norte</option>
                                         <option value="America del Sur">America del Sur</option>
-                                        <option value="Centro America">Centro America</option>
                                         <option value="Europa">Europa</option>
                                         <option value="Asia">Asia</option>
                                         <option value="Africa">Africa</option>
@@ -81,7 +98,6 @@ let countriesAll = countries.slice(inicio, final)
                                     </select>
                             </div>}
             />
-
             <div className='content_countries'>
                 {
                     countriesAll.map((country)=>{
@@ -94,9 +110,18 @@ let countriesAll = countries.slice(inicio, final)
                         />
                     })
                 }
-                <div className="cont_button">
-                    <button className='button_home' onClick={previous_page}>{numeberPage}</button> <button className='button_home' onClick={next_page}>{numeberPage2}</button>
-                </div>
+            </div>
+            <div>
+                {
+                    countriesAll.length > 1 
+                    ? <div className="cont_button">
+                        <button className='button_home' onClick={previous_page}>{numeberPage}</button> <button className='button_home' onClick={next_page}>{numeberPage2}</button>
+                      </div> 
+
+                    : <div className="cont_button">
+                        <button className='boton_atras' onClick={()=>dispatch(allCountries())}>Atras</button>
+                      </div>
+                }
             </div>
         </div>
     )

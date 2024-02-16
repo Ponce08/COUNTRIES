@@ -12,7 +12,19 @@ body{
 }
 
 .cont_button{
-    margin: 10px 0 10px 0;
+    margin: 10px 0 10px 600px;
+}
+
+.boton_atras{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 40px;
+    font-weight: bold;
 }
 
 .button_home{

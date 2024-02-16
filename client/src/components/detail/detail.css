@@ -1,0 +1,58 @@
+.content_detail{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 30px;
+    position: relative;
+    overflow: hidden;
+    
+    .content_date{
+        display: flex;
+        margin: 10px 0 0 0;
+        z-index: 2;
+        div{
+            margin-left: 50px;
+        }
+        h3{
+            margin: 0;
+            h3{
+                color: purple;
+                font-size: 40px;
+                font-weight: bold;
+                display: inline-block;
+                margin: 0;
+            }
+        }
+    }
+
+    .img_flag{
+        z-index: 2;
+        margin-top: 20px;
+    }
+
+    img{
+        height: 400px;
+    }
+
+
+    h3{
+        margin: 0;
+        font-weight: bold;
+       h4{
+        display: inline-block;
+        margin: 0;
+        color: blue;
+       }
+    }
+
+}
+
+.img_detail img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 50%;
+}

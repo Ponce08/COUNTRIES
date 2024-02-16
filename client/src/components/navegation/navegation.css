@@ -24,7 +24,7 @@
     }
     input{
         height: 14px;
-        padding-bottom: 2px;
+        font-family: 'Courier New', Courier, monospace;
     }
 }
 

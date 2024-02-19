@@ -1,6 +1,6 @@
 import './home.css';
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState} from "react";
+import { useState} from "react";
 import { Link } from 'react-router-dom';
 import { allCountries, filter, getCountryByName, order } from '../../ridux/actions';
 import Countries from '../countries/Countries';
@@ -13,18 +13,14 @@ const Home = ()=>{
 
     const [inicio, setInicio] = useState(0);
     const [final, setFinal] = useState(10);
-    const [numeberPage, setNumberPage] = useState(1);
-    const [numeberPage2, setNumberPage2] = useState(2);
     const [nameCountry, setNameCountry] = useState('');
 
-            // Control paginado
+        // Control paginado
 let countriesAll = countries.slice(inicio, final)
     const previous_page = ()=>{
             if(inicio > 0){
                 setInicio(inicio - 10);
                 setFinal(final - 10);
-                setNumberPage2(numeberPage2 - 1)
-                setNumberPage(numeberPage - 1)
                 countriesAll = countries.slice(inicio, final);
             }
         };
@@ -33,40 +29,36 @@ let countriesAll = countries.slice(inicio, final)
             if(final < 251){
                 setInicio(inicio + 10);
                 setFinal(final + 10);
-                setNumberPage2(numeberPage2 + 1)
-                setNumberPage(numeberPage + 1)
                 countriesAll = countries.slice(inicio, final);
             }
         };
 
-            // Orden y filtrados
-        const handleChange = (event)=>{
-            setNameCountry(event.target.value)
-        }
-
+        // Orden y Filtrado
         const handleInput = ()=>{
             dispatch(getCountryByName(nameCountry))
             setNameCountry('')
-        }
+            setInicio(0)
+            setFinal(10)
+        };
 
         const handleOrder = (event)=>{
             dispatch(order(event.target.value))
+            setInicio(0)
+            setFinal(10)
           };
 
         const handleFilter = (event)=>{
             dispatch(filter(event.target.value))
+            setInicio(0)
+            setFinal(10)
           };
-
-    useEffect(()=>{
-        dispatch(allCountries())
-    }, []);
 
     return(
         <div>
             <Navegation
                 find_By_name={<div className='content_buscar'>
                                 <button onClick={handleInput}>Buscar</button>
-                                <input type="text" value={nameCountry} onChange={handleChange}/>
+                                <input type="text" value={nameCountry} onChange={(event)=>{setNameCountry(event.target.value)}}/>
                               </div>}
 
                 crear_actividad={ <div className='content_crear_actividad'>
@@ -114,12 +106,12 @@ let countriesAll = countries.slice(inicio, final)
             <div>
                 {
                     countriesAll.length > 1 
-                    ? <div className="cont_button">
-                        <button className='button_home' onClick={previous_page}>{numeberPage}</button> <button className='button_home' onClick={next_page}>{numeberPage2}</button>
+                    ? <div className={ inicio === 0 ? "cont_button" : "cont_button2"}>
+                        <button className='button_home1' onClick={previous_page}>Prev</button> <button className='button_home2' onClick={next_page}>Next</button>
                       </div> 
 
                     : <div className="cont_button">
-                        <button className='boton_atras' onClick={()=>dispatch(allCountries())}>Atras</button>
+                        <button className='boton_atras' onClick={()=>{dispatch(allCountries())}}>Atras</button>
                       </div>
                 }
             </div>

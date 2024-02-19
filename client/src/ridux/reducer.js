@@ -8,6 +8,7 @@ const initialState = {
 
 const reducer =(state=initialState, action)=>{
     switch(action.type){
+        
         case ALL_COUNTRIES:
             return {
                 ...state,

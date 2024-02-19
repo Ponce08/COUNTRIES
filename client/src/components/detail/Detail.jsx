@@ -38,7 +38,6 @@ const Detail = ()=>{
                 <img src={fondo_detail} alt="fondo_detail" />
             </div>
         </div>
-
     )
 };
 

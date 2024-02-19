@@ -1,0 +1,102 @@
+.content_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    
+}
+
+.content_h1{
+    margin-top: 100px;
+    z-index: 2;
+}
+
+.content_form2{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+.content_data1{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.content_data2{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.input_number1{
+    width: 30px;
+    margin-right: 100px;
+}
+
+.input_number2{
+    width: 30px;
+}
+
+.label_number1{
+    margin-right: 10px;
+}
+
+.label_number2{
+    margin-right: 10px; 
+}
+
+.input_name{
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.content_temporada{
+    margin: 10px 0 10px 0;
+}
+
+.content_temporada select{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.select_pais{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.content_button{
+    display: flex;
+    justify-content: center;
+    button{
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 100px;
+    }
+}
+
+.img_form img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 30%;
+}
+
+.span_pais{
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    text-align: justify;
+    margin-right: 5px;
+}
+
+.span_pais span{
+    margin: 0 10px 0 10px;
+}

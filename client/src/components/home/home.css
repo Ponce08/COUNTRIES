@@ -13,6 +13,57 @@ body{
 
 .cont_button{
     margin: 10px 0 10px 600px;
+    .button_home2{
+        margin: 10px;
+        height: 50px;
+        width: 70px;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: aquamarine;
+        background: rgb(29,27,29);
+        background: linear-gradient(323deg, rgba(29,27,29,1) 0%, rgba(20,126,136,1) 100%);
+        transition-duration: 0.8s;
+    }
+    .button_home1{
+        display: none;
+    }
+}
+.cont_button2{
+    margin: 10px 0 10px 600px;
+    .button_home1{
+        margin: 10px;
+        height: 50px;
+        width: 70px;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: aquamarine;
+        background: rgb(29,27,29);
+        background: linear-gradient(323deg, rgba(29,27,29,1) 0%, rgba(20,126,136,1) 100%);
+        transition-duration: 0.8s;
+    }
+    .button_home2{
+        margin: 10px;
+        height: 50px;
+        width: 70px;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        border-style: solid;
+        border-radius: 10px;
+        border-width: 2px;
+        border-color: aquamarine;
+        background: rgb(29,27,29);
+        background: linear-gradient(323deg, rgba(29,27,29,1) 0%, rgba(20,126,136,1) 100%);
+        transition-duration: 0.8s;
+    }
 }
 
 .boton_atras{
@@ -27,23 +78,16 @@ body{
     font-weight: bold;
 }
 
-.button_home{
-    margin: 10px;
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    border-style: solid;
-    border-radius: 10px;
-    border-width: 2px;
-    border-color: aquamarine;
-    background: rgb(29,27,29);
-    background: linear-gradient(323deg, rgba(29,27,29,1) 0%, rgba(20,126,136,1) 100%);
-    transition-duration: 0.8s;
+
+.button_home1:hover{
+    transition-duration: 0.4s;
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 15px aquamarine, 0 0 15px aquamarine, 0 0 15px aquamarine;
+    text-shadow: 3px 3px black;
 }
 
-.button_home:hover{
+.button_home2:hover{
     transition-duration: 0.4s;
     transform: scale(1.1);
     cursor: pointer;

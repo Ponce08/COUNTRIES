@@ -1,4 +1,4 @@
-import './form.css';
+import './form2.css';
 import fondo_form from './fondo_form.jpg'
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { useState} from "react";
 import { postActivity } from '../../ridux/actions';
 
 let paises = [];
-const Form = ()=>{
+const Form2 = ()=>{
     
     const { countries } = useSelector((state)=>state);
     const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const Form = ()=>{
                         </div>
                     </div>
                     <div className='content_button'>
-                        <button>ENVIAR</button><Link to={'/crear_actividad2'}><button>CREAR OTRA</button></Link>
+                        <button>ENVIAR</button><Link to={'/crear_actividad'}><button>CREAR OTRA</button></Link>
                     </div>
                 </div>
             </form>
@@ -109,4 +109,4 @@ const Form = ()=>{
     )
 };
 
-export default Form;
+export default Form2;

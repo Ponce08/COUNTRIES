@@ -1,4 +1,4 @@
-import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, STATE_NULL } from "./actions_types";
+import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
 import axios from "axios";
 import { countryFilterByContinent, funcionOrderCountry } from "./utils/utils";
 
@@ -76,5 +76,21 @@ export const stateNull = ()=>{
             type:STATE_NULL,
             payload:{}
         })
+    }
+};
+
+export const postActivity = (activityData)=>{
+    return async(dispatch)=>{
+        try {
+            const { data } = await axios.post(`http://localhost:3001/countries/post_activity`, activityData);
+
+            return dispatch({
+                type:POST_ACTIVITY,
+                payload: data
+            })
+            
+        } catch (error) {
+            throw Error(error.message)
+        }
     }
 };

@@ -45,8 +45,8 @@ let countriesAll = countries.slice(inicio, final)
             dispatch(order(event.target.value))
             setInicio(0)
             setFinal(10)
-          };
-
+        };
+       
         const handleFilter = (event)=>{
             dispatch(filter(event.target.value))
             setInicio(0)

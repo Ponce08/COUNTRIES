@@ -2,7 +2,7 @@ import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, POST_ACT
 import axios from "axios";
 import { countryFilterByContinent, funcionOrderCountry } from "./utils/utils";
 
-export const allCountries = ()=>{
+export const all_Countries = ()=>{
     return async(dispatch)=>{
         try {
             const { data } = await axios.get('http://localhost:3001/countries');

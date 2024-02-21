@@ -51,7 +51,6 @@
 }
 
 .input_name{
-    margin-bottom: 10px;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -66,7 +65,6 @@
 .select_pais{
     font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
-    margin-bottom: 10px;
 }
 
 .content_button{
@@ -81,14 +79,30 @@
         border-style: solid;
         border-color: black;
         border-width: 1px;
-        transition-duration: 0.8s;
+        transition-duration: 0.3s;
     }
 }
 
 .content_button button:hover{
-    transition-duration: 0.8s;
+    transition-duration: 0.3s;
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.content_button2{
+    display: flex;
+    justify-content: center;
+    button{
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 20px;
+        margin-right: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
+        transition-duration: 0.8s;
+    }
 }
 
 .img_form img{
@@ -132,4 +146,23 @@
 
 .option_select{
     text-align: center;
+}
+
+.cont-p p{
+    color: red;
+    margin: 0;
+    font-size: 15px;
+    display: inline-block;
+}
+
+.content_actividad_creada{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    margin: 230px 0 0 250px;
+    h1{
+        font-size: 50px;
+        margin: 0;
+    }
 }

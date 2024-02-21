@@ -1,16 +1,18 @@
 import './form.css';
 import fondo_form from './fondo_form.jpg'
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-import { useState} from "react";
+import { useState } from "react";
 import { postActivity } from '../../ridux/actions';
+import { validation } from './validation';
 
 let paises = [];
 const Form = ()=>{
     
-    const { countries } = useSelector((state)=>state);
+    const { allCountries } = useSelector((state)=>state);
     const dispatch = useDispatch();
-    
+    const [ aux, setAux ] = useState(true)
+    const [ aux2, setAux2 ] = useState(false)
+
     const [ activityData, setActivityData ] = useState({
         name:'',
         dificulty:'',
@@ -28,22 +30,32 @@ const Form = ()=>{
     };
     
     const handleChange = (event)=>{
-        paises.push(event.target.value)
-        setActivityData({
-            ...activityData,
-            countries:paises
-        })
+        if(event.target.value !== ''){
+            paises.push(event.target.value)
+            setActivityData({
+                ...activityData,
+                countries:paises
+            })
+        }else{
+            setActivityData({
+                ...activityData,
+                countries:[]
+            })
+            paises = []
+        }
     };
     
     const handleSubmit = (event) => {
         event.preventDefault();
         dispatch(postActivity(activityData))
-        // alert('ACTIVIDAD CREADA CON EXITO')
         setActivityData({
             name:'',
-            dificulty:0,
-            duration:0,
+            dificulty:'',
+            duration:'',
+            season:'',
+            countries:[]
         })
+        setAux(false)
         paises = []
     };
     
@@ -56,55 +68,80 @@ const Form = ()=>{
             ...activityData,
             countries:paises
         })
-    } 
+        setAux2(true)
+    };
+
+    const { name, dificulty, duration, season, countries } = validation(activityData)
             
     return(
-        <div className='content_form'>
-            <div className='content_h1'>
-                <h1>Crear Actividad Turistica</h1>
-            </div>
-            <form className='content_form2' onSubmit={handleSubmit}>
-                <div className='content_data1'>
-                    <label htmlFor="name">Nombre:</label>
-                    <input type="text" name="name" className='input_name' onChange={handleForm}/>
-                    <div>
-                        <label htmlFor="dificulty" className='label_number1'>Dificultad:</label>
-                        <input type="number" name="dificulty" min="0" max="5" className='input_number1' placeholder='0' onChange={handleForm}/>
+       <div>
+        {
+            aux ?
+                <div className='content_form'>
+                    <div className='content_h1'>
+                        <h1>Crear Actividad Turistica</h1>
                     </div>
-                    <div>
-                        <label htmlFor="duration" className='label_number2'>Duracion(Horas):</label>
-                        <input type="number" name="duration" min="0" max="24" className='input_number2' placeholder='0' onChange={handleForm}/>
+                    <form className='content_form2' onSubmit={handleSubmit}>
+                        <div className='content_data1'>
+                            <label htmlFor="name">Nombre:</label>
+                            <input type="text" name="name" className='input_name' onChange={handleForm}/>
+                            { activityData.name !== '' ? <div className="cont-p"><p>{name}</p></div> : <div className="cont-p"><p></p></div> }
+                            <div>
+                                <label htmlFor="dificulty" className='label_number1'>Dificultad:</label>
+                                <input type="number" name="dificulty" min="0" className='input_number1' placeholder='0' onChange={handleForm}/>
+                                { activityData.dificulty !== '' ? <div className="cont-p"><p>{dificulty}</p></div> : <div className="cont-p"><p></p></div> }
+                            </div>
+                            <div>
+                                <label htmlFor="duration" className='label_number2'>Duracion(Horas):</label>
+                                <input type="number" name="duration" min='0' className='input_number2' placeholder='0' onChange={handleForm}/>
+                                { activityData.duration !== '' ? <div className="cont-p"><p>{duration}</p></div> : <div className="cont-p"><p></p></div>}
+                            </div>
+                        </div>
+                        <div className='content_data2'>
+                            <div className='content_temporada'>
+                                <label htmlFor="season">Temporarda:</label>
+                                <select onChange={handleForm} name='season'>
+                                    <option>--Seleccione--</option>
+                                    <option value="Verano">Verano</option>
+                                    <option value="Invierno">Invierno</option>
+                                    <option value="Otoño">Otoño</option>
+                                    <option value="Primavera">Primavera</option>
+                                </select>
+                                { activityData.season !== '' ? <div className="cont-p"><p>{season}</p></div> : <div className="cont-p"><p></p></div>}
+                            </div>
+                            <div className='content_select'>
+                                <label>Seleccionar Pais:</label>
+                                <select onChange={handleChange} name='countries' className='select_pais'>  
+                                    <option value='' className='option_select'>--Seleccione--</option>
+                                    {allCountries.map((pais)=><option key={pais.id} value={pais.name.toUpperCase()}>{pais.name.toUpperCase()}</option>)}
+                                </select>
+                                { aux2 ? <div className="cont-p"><p>{countries}</p></div> : <div className="cont-p"><p></p></div>}
+                                <div  className='span_pais'>
+                                    {paises.map((country, i)=><div key={i}><span>{country}</span><a key={i} onClick={()=>bontonX(country)}>X</a></div>)}
+                                </div>
+                            </div>
+                            <div className={name || dificulty || duration || season || countries || !activityData.name || !activityData.dificulty || !activityData.duration || !activityData.season || activityData.countries.length === 0 ? 'content_button2' : 'content_button'}>
+                                <button type='submit' disabled={name || dificulty || duration || season || countries || !activityData.name || !activityData.dificulty || !activityData.duration || !activityData.season || activityData.countries.length === 0}>ENVIAR</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div className="img_form">
+                        <img src={fondo_form} alt="fondo_form" />
                     </div>
                 </div>
-                <div className='content_data2'>
-                    <div className='content_temporada'>
-                        <label htmlFor="season">Temporarda:</label>
-                        <select onChange={handleForm} name='season'>
-                            <option value=''>--Seleccione--</option>
-                            <option value="Verano">Verano</option>
-                            <option value="Invierno">Invierno</option>
-                            <option value="Otoño">Otoño</option>
-                            <option value="Primavera">Primavera</option>
-                        </select>
-                    </div>
-                    <div className='content_select'>
-                        <label htmlFor="">Seleccionar Pais:</label>
-                        <select onChange={handleChange} name='countries' className='select_pais'>  
-                            <option value='' className='option_select'>--Seleccione--</option>
-                            {countries.map((pais)=><option key={pais.id} value={pais.name.toUpperCase()}>{pais.name.toUpperCase()}</option>)}
-                        </select>
-                        <div  className='span_pais'>
-                            {paises.map((country, i)=><div key={i}><span>{country}</span><a key={i} onClick={()=>bontonX(country)}>X</a></div>)}
+                : 
+                <div>
+                    <div className='content_actividad_creada'>
+                        <h1>Actividad creada con Exito✅</h1>
+                        <div className='content_button'>
+                            <button onClick={()=>setAux(true)}>Crear Otra</button>
                         </div>
                     </div>
-                    <div className='content_button'>
-                        <button>ENVIAR</button><Link to={'/crear_actividad2'}><button>CREAR OTRA</button></Link>
+                    <div className="img_form">
+                        <img src={fondo_form} alt="fondo_form" />
                     </div>
                 </div>
-            </form>
-            <div className="img_form">
-                <img src={fondo_form} alt="fondo_form" />
-            </div>
+        }
         </div>
     )
 };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from 'axios';
-import { allCountries } from '../../ridux/actions';
+import { all_Countries } from '../../ridux/actions';
 
 const Welcome = ()=>{
 
@@ -27,7 +27,7 @@ const Welcome = ()=>{
             <div className='content_titulo_button'>
                 <h1 className='titulo_welcome'>Bienvenidos</h1>
                 <Link to={'/home'}>
-                    <button className='button_welcome' onClick={()=>dispatch(allCountries())}>Empezar</button>
+                    <button className='button_welcome' onClick={()=>dispatch(all_Countries())}>Empezar</button>
                 </Link>
             </div>
             <div className='content_fondo'>

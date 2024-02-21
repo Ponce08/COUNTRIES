@@ -1,9 +1,9 @@
 import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
 
 const initialState = {
-    countries:[],
+    allCountries:[],
     countryID:{},
-    postActivity:[]
+    postActivities:[]
 }
 
 const reducer =(state=initialState, action)=>{
@@ -12,7 +12,7 @@ const reducer =(state=initialState, action)=>{
         case ALL_COUNTRIES:
             return {
                 ...state,
-                countries: action.payload
+                allCountries: action.payload
             };
 
         case COUNTRY_BY_ID:
@@ -30,25 +30,25 @@ const reducer =(state=initialState, action)=>{
         case GET_NAME_COUNTRY:
             return {
                 ...state,
-                countries:action.payload
+                allCountries:action.payload
             };
         case ORDER:
             return{
                 ...state,
-                countries:action.payload
+                allCountries:action.payload
             };
 
         case FILTER:
             return{
                 ...state,
-                countries:action.payload
+                allCountries:action.payload
             };
 
         case POST_ACTIVITY:
-            state.postActivity.push(action.payload)
+            state.postActivities.push(action.payload)
             return {
                  ...state,
-                postActivity:[...state.postActivity]
+                postActivities:[...state.postActivities]
             };
 
         default:

@@ -2,13 +2,14 @@ import './home.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useState} from "react";
 import { Link } from 'react-router-dom';
-import { allCountries, filter, getCountryByName, order } from '../../ridux/actions';
+import { all_Countries, filter, getCountryByName, order } from '../../ridux/actions';
 import Countries from '../countries/Countries';
 import Navegation from '../navegation/Navegation';
 
+let countryName = []
 const Home = ()=>{
 
-    const { countries } = useSelector((state)=>state);
+    const { allCountries } = useSelector((state)=>state);
     const dispatch = useDispatch();
 
     const [inicio, setInicio] = useState(0);
@@ -16,12 +17,12 @@ const Home = ()=>{
     const [nameCountry, setNameCountry] = useState('');
 
         // Control paginado
-let countriesAll = countries.slice(inicio, final)
+let countriesAll = allCountries.slice(inicio, final)
     const previous_page = ()=>{
             if(inicio > 0){
                 setInicio(inicio - 10);
                 setFinal(final - 10);
-                countriesAll = countries.slice(inicio, final);
+                countriesAll = allCountries.slice(inicio, final);
             }
         };
 
@@ -29,12 +30,13 @@ let countriesAll = countries.slice(inicio, final)
             if(final < 251){
                 setInicio(inicio + 10);
                 setFinal(final + 10);
-                countriesAll = countries.slice(inicio, final);
+                countriesAll = allCountries.slice(inicio, final);
             }
         };
 
         // Orden y Filtrado
         const handleInput = ()=>{
+            countryName.push(nameCountry)
             dispatch(getCountryByName(nameCountry))
             setNameCountry('')
             setInicio(0)
@@ -110,8 +112,11 @@ let countriesAll = countries.slice(inicio, final)
                         <button className='button_home1' onClick={previous_page}>Prev</button> <button className='button_home2' onClick={next_page}>Next</button>
                       </div> 
 
-                    : <div className="cont_button">
-                        <button className='boton_atras' onClick={()=>{dispatch(allCountries())}}>Atras</button>
+                    : <div className={ countriesAll.length === 0 ? "cont_button3" : "cont_button" }>
+                        <div>
+                            <h1>El Pais con nombre "{countryName[countryName.length-1]}" no lo encontramos, intenta con otro</h1>
+                        </div>
+                        <button className='boton_atras' onClick={()=>{dispatch(all_Countries())}}>Atras</button>
                       </div>
                 }
             </div>

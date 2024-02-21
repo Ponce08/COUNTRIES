@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
     },
 
     duration:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.DATE,
       allowNull: false
     },
 

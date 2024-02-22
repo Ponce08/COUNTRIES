@@ -1,6 +1,6 @@
-import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
+import { ALL_COUNTRIES, COUNTRY_BY_ID, GET_NAME_COUNTRY, ORDER_AND_FILTER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
 import axios from "axios";
-import { countryFilterByContinent, funcionOrderCountry } from "./utils/utils";
+import { funcionOrderAndFilterCountry } from "./utils/utils";
 
 export const all_Countries = ()=>{
     return async(dispatch)=>{
@@ -50,22 +50,12 @@ export const getCountryByName = (name)=>{
     }
 };
 
-export const order = (value)=>{
+export const orderAndFilterCountry = (value)=>{
     return async(dispatch)=>{
-        const orderCountries = await funcionOrderCountry(value)
+        const resultOrderOrFilter = await funcionOrderAndFilterCountry(value)
         return dispatch ({ 
-            type:ORDER, 
-            payload:orderCountries
-        })
-    }
-};
-
-export const filter = (value)=>{
-    return async(dispatch)=>{
-        const filterCountries = await countryFilterByContinent(value)
-        return dispatch ({ 
-            type:FILTER, 
-            payload:filterCountries
+            type:ORDER_AND_FILTER, 
+            payload:resultOrderOrFilter
         })
     }
 };

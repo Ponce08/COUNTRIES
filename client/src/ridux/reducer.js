@@ -1,4 +1,4 @@
-import { ALL_COUNTRIES, COUNTRY_BY_ID, FILTER, GET_NAME_COUNTRY, ORDER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
+import { ALL_COUNTRIES, COUNTRY_BY_ID, GET_NAME_COUNTRY, ORDER_AND_FILTER, POST_ACTIVITY, STATE_NULL } from "./actions_types";
 
 const initialState = {
     allCountries:[],
@@ -32,13 +32,8 @@ const reducer =(state=initialState, action)=>{
                 ...state,
                 allCountries:action.payload
             };
-        case ORDER:
-            return{
-                ...state,
-                allCountries:action.payload
-            };
 
-        case FILTER:
+        case ORDER_AND_FILTER:
             return{
                 ...state,
                 allCountries:action.payload

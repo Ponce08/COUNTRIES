@@ -2,11 +2,10 @@ import './home.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useState} from "react";
 import { Link } from 'react-router-dom';
-import { all_Countries, filter, getCountryByName, order } from '../../ridux/actions';
+import { all_Countries, getCountryByName, orderAndFilterCountry } from '../../ridux/actions';
 import Countries from '../countries/Countries';
 import Navegation from '../navegation/Navegation';
 
-let countryName = []
 const Home = ()=>{
 
     const { allCountries } = useSelector((state)=>state);
@@ -34,26 +33,21 @@ let countriesAll = allCountries.slice(inicio, final)
             }
         };
 
-        // Orden y Filtrado
+        // Buscar por nombre
         const handleInput = ()=>{
-            countryName.push(nameCountry)
             dispatch(getCountryByName(nameCountry))
             setNameCountry('')
             setInicio(0)
             setFinal(10)
         };
-
-        const handleOrder = (event)=>{
-            dispatch(order(event.target.value))
+        
+        // Orden y Filtrado
+        const handleOrderAndFilter = (event)=>{
+            dispatch(orderAndFilterCountry(event.target.value))
+            event.target.value = ''
             setInicio(0)
             setFinal(10)
         };
-       
-        const handleFilter = (event)=>{
-            dispatch(filter(event.target.value))
-            setInicio(0)
-            setFinal(10)
-          };
 
     return(
         <div>
@@ -65,13 +59,13 @@ let countriesAll = allCountries.slice(inicio, final)
 
                 crear_actividad={ <div className='content_crear_actividad'>
                                     <Link to={'/crear_actividad'}>
-                                        <button>Crear Actividad Turistica</button>
+                                        <button onClick={()=>{dispatch(all_Countries())}}>Crear Actividad Turistica</button>
                                     </Link>
                                   </div>}
 
                 ordenar={    <div className='content_ordenar'>
                                 <label>Ordenar</label>
-                                    <select onChange={handleOrder}>
+                                    <select onChange={handleOrderAndFilter}>
                                         <option value="Todos">Todos</option>
                                         <option value="Mayor Poblacion">Mayor Poblacion</option>
                                         <option value="Menor Poblacion">Menor Poblacion</option>
@@ -79,16 +73,24 @@ let countriesAll = allCountries.slice(inicio, final)
                                     </select>
                             </div>}
                 filtrar={    <div className='content_filtrar'>
-                                <label>Filtrar Por Continente</label>
-                                    <select onChange={handleFilter}>
-                                        <option value="Todos">Todos</option>
-                                        <option value="America del Norte">America del Norte</option>
-                                        <option value="America del Sur">America del Sur</option>
-                                        <option value="Europa">Europa</option>
-                                        <option value="Asia">Asia</option>
-                                        <option value="Africa">Africa</option>
-                                        <option value="Oceania">Oceania</option>
-                                        <option value="Antartida">Antartida</option>
+                                <label>Filtrar</label>
+                                    <select onChange={handleOrderAndFilter}>
+                                        <optgroup label='Por Continente:'>
+                                            <option value="Todos">Todos</option>
+                                            <option value="North America">America del Norte</option>
+                                            <option value="South America">America del Sur</option>
+                                            <option value="Europe">Europa</option>
+                                            <option value="Asia">Asia</option>
+                                            <option value="Africa">Africa</option>
+                                            <option value="Oceania">Oceania</option>
+                                            <option value="Antarctica">Antartida</option>
+                                        </optgroup>
+                                        <optgroup label='Por Actividad:'>
+                                            <option value="Verano">Verano</option>
+                                            <option value="Invierno">Invierno</option>
+                                            <option value="Otoño">Otoño</option>
+                                            <option value="Primavera">Primavera</option>
+                                        </optgroup>
                                     </select>
                             </div>}
             />
@@ -112,11 +114,11 @@ let countriesAll = allCountries.slice(inicio, final)
                         <button className='button_home1' onClick={previous_page}>Prev</button> <button className='button_home2' onClick={next_page}>Next</button>
                       </div> 
 
-                    : <div className={ countriesAll.length === 0 ? "cont_button3" : "cont_button" }>
+                    : <div className={ countriesAll.length === 0 && inicio === 0 ? "cont_button3" : "cont_button" }>
                         <div>
-                            <h1>El Pais con nombre "{countryName[countryName.length-1]}" no lo encontramos, intenta con otro</h1>
+                           <h1> Ops!! No encontramos lo que solicitaste 😅</h1>
                         </div>
-                        <button className='boton_atras' onClick={()=>{dispatch(all_Countries())}}>Atras</button>
+                        <button className='boton_atras' onClick={()=>{dispatch(all_Countries()); setInicio(0); setFinal(10)}}>Atras</button>
                       </div>
                 }
             </div>

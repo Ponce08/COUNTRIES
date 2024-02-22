@@ -1,6 +1,7 @@
 import './form.css';
 import fondo_form from './fondo_form.jpg'
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { postActivity } from '../../ridux/actions';
 import { validation } from './validation';
@@ -78,9 +79,11 @@ const Form = ()=>{
         {
             aux ?
                 <div className='content_form'>
+
                     <div className='content_h1'>
                         <h1>Crear Actividad Turistica</h1>
                     </div>
+
                     <form className='content_form2' onSubmit={handleSubmit}>
                         <div className='content_data1'>
                             <label htmlFor="name">Nombre:</label>
@@ -97,6 +100,7 @@ const Form = ()=>{
                                 { activityData.duration !== '' ? <div className="cont-p"><p>{duration}</p></div> : <div className="cont-p"><p></p></div>}
                             </div>
                         </div>
+
                         <div className='content_data2'>
                             <div className='content_temporada'>
                                 <label htmlFor="season">Temporarda:</label>
@@ -121,20 +125,22 @@ const Form = ()=>{
                                 </div>
                             </div>
                             <div className={name || dificulty || duration || season || countries || !activityData.name || !activityData.dificulty || !activityData.duration || !activityData.season || activityData.countries.length === 0 ? 'content_button2' : 'content_button'}>
-                                <button type='submit' disabled={name || dificulty || duration || season || countries || !activityData.name || !activityData.dificulty || !activityData.duration || !activityData.season || activityData.countries.length === 0}>ENVIAR</button>
+                                <button type='submit' disabled={name || dificulty || duration || season || countries || !activityData.name || !activityData.dificulty || !activityData.duration || !activityData.season || activityData.countries.length === 0}>ENVIAR</button><Link to={'/home'}><button className='boton_home_form'>Home</button></Link>
                             </div>
                         </div>
                     </form>
+
                     <div className="img_form">
                         <img src={fondo_form} alt="fondo_form" />
                     </div>
+                    
                 </div>
                 : 
                 <div>
                     <div className='content_actividad_creada'>
                         <h1>Actividad creada con Exito✅</h1>
                         <div className='content_button'>
-                            <button onClick={()=>setAux(true)}>Crear Otra</button>
+                            <button onClick={()=>setAux(true)}>Crear Otra</button><Link to={'/home'}><button>Home</button></Link>
                         </div>
                     </div>
                     <div className="img_form">

@@ -72,6 +72,7 @@ let countriesAll = allCountries.slice(inicio, final)
                                         <option value="De la A-Z">De la A-Z</option>
                                     </select>
                             </div>}
+                            
                 filtrar={    <div className='content_filtrar'>
                                 <label>Filtrar</label>
                                     <select onChange={handleOrderAndFilter}>

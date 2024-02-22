@@ -89,6 +89,12 @@
     cursor: pointer;
 }
 
+.boton_home_form:hover{
+    transition-duration: 0.3s;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .content_button2{
     display: flex;
     justify-content: center;

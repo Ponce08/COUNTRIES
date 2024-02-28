@@ -10,6 +10,10 @@ export const validation = (activityData)=>{
         validationActivity.name = 'Escriba mas de 5 caracteres'
     };
 
+    if(activityData.name.length === 0){
+        validationActivity.name = 'Este campo no puede quedar vacio'
+    };
+
     if(activityData.dificulty < 1 || activityData.dificulty > 5){
         validationActivity.dificulty = 'El nivel de dificultad es minimo 1 maximo 5'
     };

@@ -13,6 +13,8 @@ const Form = ()=>{
     const dispatch = useDispatch();
     const [ aux, setAux ] = useState(true)
     const [ aux2, setAux2 ] = useState(false)
+    const [ aux3, setAux3 ] = useState(false)
+
 
     const [ activityData, setActivityData ] = useState({
         name:'',
@@ -28,6 +30,7 @@ const Form = ()=>{
             ...activityData,
             [event.target.name]: event.target.value
         });
+        setAux3(true)
     };
     
     const handleChange = (event)=>{
@@ -88,7 +91,7 @@ const Form = ()=>{
                         <div className='content_data1'>
                             <label htmlFor="name">Nombre:</label>
                             <input type="text" name="name" className='input_name' onChange={handleForm}/>
-                            { activityData.name !== '' ? <div className="cont-p"><p>{name}</p></div> : <div className="cont-p"><p></p></div> }
+                            { aux3 ? <div className="cont-p"><p>{name}</p></div> : <div className="cont-p"><p></p></div> }
                             <div>
                                 <label htmlFor="dificulty" className='label_number1'>Dificultad:</label>
                                 <input type="number" name="dificulty" min="0" className='input_number1' placeholder='0' onChange={handleForm}/>
